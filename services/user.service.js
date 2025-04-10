@@ -1,14 +1,14 @@
 const { filter } = require("mongoose/lib/helpers/query/validOps");
 const UserSchema = require("../schema/user");
 
-const registerUser = async (name, email, password) => {
-    let record = UserSchema.create({name, email, password})
-    return record;
+const registerUserFC = async (name, email, password) => {
+  let record = UserSchema.create({ name, email, password })
+  return record;
 }
 
-const loginUser = async (email, password) => {    
-    let record = UserSchema.findOne({email: email});
-    return record;
+const loginUserFC = async (email, password) => {
+  let record = UserSchema.findOne({ email: email });
+  return record;
 }
 
 const createEvent = async (id, title, date) => {
@@ -23,8 +23,8 @@ const getEvents = async () => {
 }
 
 const deleteEvent = async (id) => {
-  let record = EventSchema.deleteOne({"id": id});
+  let record = EventSchema.deleteOne({ "id": id });
   return record;
 }
 
-module.exports = { loginUser, registerUser };
+module.exports = { loginUserFC, registerUserFC };
