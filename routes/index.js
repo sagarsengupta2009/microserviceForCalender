@@ -1,6 +1,11 @@
-var express = require('express');
-const { login, register } = require('../controllers/userController');
-const { calenderDates, getEvents, deleteEvent } = require('../controllers/eventsController');
+var express = require("express");
+const { login, register } = require("../controllers/userController");
+const {
+  calenderDates,
+  getEvents,
+  editEvent,
+  deleteEvent,
+} = require("../controllers/eventsController");
 var router = express.Router();
 // const passport = require('passport');
 // const initializePassport = require('./passport-config');
@@ -13,10 +18,10 @@ const middleware = (req, res, next) => {
     res.sendStatus(401);
   }
   next();
-}
+};
 
 /*Login user*/
-router.post('/login', login)
+router.post("/login", login);
 
 // router.post('/login', async function(req, res) {
 //   const {email, password} = req.body
@@ -26,7 +31,7 @@ router.post('/login', login)
 // })
 
 /*Register user*/
-router.post('/register', register)
+router.post("/register", register);
 
 // router.post('/register', async function(req, res) {
 //   const {name, email, password} = req.body;
@@ -40,11 +45,11 @@ router.post('/register', register)
 //   } catch(e) {
 //     res.send('Oops! Something went wrong.');
 //     console.log('failure');
-//   }  
-// }) 
+//   }
+// })
 
-/* GET home page. */
-router.post('/calenderdates', calenderDates)
+/* Save events to db */
+router.post("/calenderdates", calenderDates);
 
 // router.post('/calenderdates', async function(req, res) {
 //   let {id,title,date} = req.body;
@@ -53,7 +58,7 @@ router.post('/calenderdates', calenderDates)
 // });
 
 /* Get Calender Events */
-router.get('/getEvents', getEvents);
+router.get("/getEvents", getEvents);
 
 // router.get('/getEvents', async function(req, res) {
 //   let data = await getEvents();
@@ -61,8 +66,11 @@ router.get('/getEvents', getEvents);
 //   res.send(data);
 // });
 
+/* Edit single event */
+router.put("/editEvent", editEvent);
+
 /* Delete one event */
-router.delete('/deleteEvent/:id', deleteEvent)
+router.delete("/deleteEvent/:id", deleteEvent);
 
 // router.delete('/deleteEvent/:id', async function(req, res) {
 //   const eventId = req.params.id;
